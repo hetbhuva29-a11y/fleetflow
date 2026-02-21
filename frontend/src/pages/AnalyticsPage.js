@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Layout from '@/components/Layout';
-import { Download, TrendingUp, DollarSign } from 'lucide-react';
+import { Download, TrendingUp, IndianRupee } from 'lucide-react';
+import { formatCurrency } from '@/lib/currencyUtils';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { toast } from 'sonner';
 
@@ -37,7 +38,7 @@ const AnalyticsPage = () => {
       const response = await axios.get(`${API}/reports/export?report_type=${type}`, {
         responseType: 'blob'
       });
-      
+
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
       link.href = url;
@@ -45,7 +46,7 @@ const AnalyticsPage = () => {
       document.body.appendChild(link);
       link.click();
       link.remove();
-      
+
       toast.success(`${type} report downloaded`);
     } catch (error) {
       toast.error('Failed to export report');
@@ -89,25 +90,25 @@ const AnalyticsPage = () => {
           <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
             <div className="flex items-center justify-between mb-2">
               <p className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Total Costs</p>
-              <DollarSign className="w-5 h-5 text-orange-500" />
+              <IndianRupee className="w-5 h-5 text-orange-500" />
             </div>
-            <p className="text-3xl font-bold text-slate-900 font-heading">${totalCosts.toFixed(2)}</p>
+            <p className="text-3xl font-bold text-slate-900 font-heading">{formatCurrency(totalCosts)}</p>
             <p className="text-sm text-slate-600 mt-1">All expenses</p>
           </div>
           <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
             <div className="flex items-center justify-between mb-2">
               <p className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Fuel Costs</p>
-              <DollarSign className="w-5 h-5 text-blue-500" />
+              <IndianRupee className="w-5 h-5 text-blue-500" />
             </div>
-            <p className="text-3xl font-bold text-slate-900 font-heading">${totalFuel.toFixed(2)}</p>
+            <p className="text-3xl font-bold text-slate-900 font-heading">{formatCurrency(totalFuel)}</p>
             <p className="text-sm text-slate-600 mt-1">Total fuel spend</p>
           </div>
           <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
             <div className="flex items-center justify-between mb-2">
               <p className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Maintenance</p>
-              <DollarSign className="w-5 h-5 text-red-500" />
+              <IndianRupee className="w-5 h-5 text-red-500" />
             </div>
-            <p className="text-3xl font-bold text-slate-900 font-heading">${totalMaintenance.toFixed(2)}</p>
+            <p className="text-3xl font-bold text-slate-900 font-heading">{formatCurrency(totalMaintenance)}</p>
             <p className="text-sm text-slate-600 mt-1">Service costs</p>
           </div>
           <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
@@ -131,9 +132,12 @@ const AnalyticsPage = () => {
                   <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
                   <XAxis dataKey="date" tick={{ fontSize: 12 }} stroke="#64748b" />
                   <YAxis tick={{ fontSize: 12 }} stroke="#64748b" />
-                  <Tooltip contentStyle={{ borderRadius: '8px', border: '1px solid #e2e8f0' }} />
+                  <Tooltip
+                    contentStyle={{ borderRadius: '8px', border: '1px solid #e2e8f0' }}
+                    formatter={(value) => formatCurrency(value)}
+                  />
                   <Legend />
-                  <Line type="monotone" dataKey="total_cost" stroke="#f97316" strokeWidth={2} name="Total Cost ($)" />
+                  <Line type="monotone" dataKey="total_cost" stroke="#f97316" strokeWidth={2} name="Total Cost" />
                   <Line type="monotone" dataKey="total_liters" stroke="#3b82f6" strokeWidth={2} name="Total Liters" />
                 </LineChart>
               </ResponsiveContainer>
@@ -199,10 +203,10 @@ const AnalyticsPage = () => {
                     <tr key={vehicle.vehicle_id} className="hover:bg-slate-50 transition-colors">
                       <td className="px-4 py-3 text-sm text-slate-900 font-medium">{vehicle.vehicle_name}</td>
                       <td className="px-4 py-3 text-sm font-mono text-slate-700">{vehicle.license_plate}</td>
-                      <td className="px-4 py-3 text-sm text-slate-600">${vehicle.maintenance_cost.toFixed(2)}</td>
-                      <td className="px-4 py-3 text-sm text-slate-600">${vehicle.fuel_cost.toFixed(2)}</td>
-                      <td className="px-4 py-3 text-sm text-slate-600">${vehicle.other_expenses.toFixed(2)}</td>
-                      <td className="px-4 py-3 text-sm text-slate-900 font-semibold">${vehicle.total_cost.toFixed(2)}</td>
+                      <td className="px-4 py-3 text-sm text-slate-600">{formatCurrency(vehicle.maintenance_cost)}</td>
+                      <td className="px-4 py-3 text-sm text-slate-600">{formatCurrency(vehicle.fuel_cost)}</td>
+                      <td className="px-4 py-3 text-sm text-slate-600">{formatCurrency(vehicle.other_expenses)}</td>
+                      <td className="px-4 py-3 text-sm text-slate-900 font-semibold">{formatCurrency(vehicle.total_cost)}</td>
                       <td className="px-4 py-3 text-sm text-slate-600">{vehicle.fuel_efficiency.toFixed(1)} km/L</td>
                       <td className="px-4 py-3 text-sm text-slate-600">{vehicle.total_trips}</td>
                     </tr>

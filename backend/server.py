@@ -111,7 +111,7 @@ class Driver(BaseModel):
     name: str
     license_number: str
     license_expiry: str
-    phone: str
+    phone: str = Field(max_length=10)
     status: str = "Off Duty"  # On Duty, Off Duty, Suspended
     safety_score: float = 100.0
     trip_completion_rate: float = 0.0
@@ -122,7 +122,7 @@ class DriverCreate(BaseModel):
     name: str
     license_number: str
     license_expiry: str
-    phone: str
+    phone: str = Field(max_length=10)
 
 class Trip(BaseModel):
     model_config = ConfigDict(extra="ignore")
@@ -201,6 +201,8 @@ class ExpenseLogCreate(BaseModel):
 # ============ AUTH ROUTES ============
 @api_router.post("/auth/register")
 async def register(user_data: UserRegister):
+    print(f"Register attempt for email: {user_data.email}")
+    logger.info(f"Register attempt: {user_data.email}")
     # Check if user exists
     existing_user = await db.users.find_one({"email": user_data.email})
     if existing_user:
@@ -233,6 +235,8 @@ async def register(user_data: UserRegister):
 
 @api_router.post("/auth/login")
 async def login(credentials: UserLogin):
+    print(f"Login attempt for email: {credentials.email}")
+    logger.info(f"Login attempt: {credentials.email}")
     user = await db.users.find_one({"email": credentials.email})
     if not user or not verify_password(credentials.password, user["password"]):
         raise HTTPException(status_code=401, detail="Invalid email or password")

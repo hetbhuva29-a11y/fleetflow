@@ -3,6 +3,7 @@ import axios from 'axios';
 import Layout from '@/components/Layout';
 import { Plus, X, Fuel, Receipt } from 'lucide-react';
 import { toast } from 'sonner';
+import { formatCurrency } from '@/lib/currencyUtils';
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
@@ -145,22 +146,20 @@ const FuelExpensesPage = () => {
             <button
               data-testid="fuel-tab"
               onClick={() => setActiveTab('fuel')}
-              className={`pb-3 px-4 text-sm font-medium transition-colors border-b-2 ${
-                activeTab === 'fuel'
-                  ? 'border-orange-500 text-orange-600'
-                  : 'border-transparent text-slate-600 hover:text-slate-900'
-              }`}
+              className={`pb-3 px-4 text-sm font-medium transition-colors border-b-2 ${activeTab === 'fuel'
+                ? 'border-orange-500 text-orange-600'
+                : 'border-transparent text-slate-600 hover:text-slate-900'
+                }`}
             >
               Fuel Logs
             </button>
             <button
               data-testid="expenses-tab"
               onClick={() => setActiveTab('expenses')}
-              className={`pb-3 px-4 text-sm font-medium transition-colors border-b-2 ${
-                activeTab === 'expenses'
-                  ? 'border-orange-500 text-orange-600'
-                  : 'border-transparent text-slate-600 hover:text-slate-900'
-              }`}
+              className={`pb-3 px-4 text-sm font-medium transition-colors border-b-2 ${activeTab === 'expenses'
+                ? 'border-orange-500 text-orange-600'
+                : 'border-transparent text-slate-600 hover:text-slate-900'
+                }`}
             >
               Other Expenses
             </button>
@@ -206,8 +205,8 @@ const FuelExpensesPage = () => {
                           <td className="px-4 py-3 text-sm text-slate-900 font-medium">{getVehicleName(log.vehicle_id)}</td>
                           <td className="px-4 py-3 text-sm text-slate-600">{new Date(log.date).toLocaleDateString()}</td>
                           <td className="px-4 py-3 text-sm text-slate-700">{log.liters.toFixed(2)} L</td>
-                          <td className="px-4 py-3 text-sm text-slate-900 font-semibold">${log.cost.toFixed(2)}</td>
-                          <td className="px-4 py-3 text-sm text-slate-600">${(log.cost / log.liters).toFixed(2)}</td>
+                          <td className="px-4 py-3 text-sm text-slate-900 font-semibold">{formatCurrency(log.cost)}</td>
+                          <td className="px-4 py-3 text-sm text-slate-600">{formatCurrency(log.cost / log.liters)}</td>
                           <td className="px-4 py-3 text-sm text-slate-600">{log.odometer_reading.toFixed(0)} km</td>
                         </tr>
                       ))
@@ -257,7 +256,7 @@ const FuelExpensesPage = () => {
                           <td className="px-4 py-3 text-sm text-slate-900 font-medium">{getVehicleName(log.vehicle_id)}</td>
                           <td className="px-4 py-3 text-sm text-slate-600">{new Date(log.date).toLocaleDateString()}</td>
                           <td className="px-4 py-3 text-sm text-slate-700">{log.expense_type}</td>
-                          <td className="px-4 py-3 text-sm text-slate-900 font-semibold">${log.amount.toFixed(2)}</td>
+                          <td className="px-4 py-3 text-sm text-slate-900 font-semibold">{formatCurrency(log.amount)}</td>
                           <td className="px-4 py-3 text-sm text-slate-600">{log.notes || '-'}</td>
                         </tr>
                       ))
@@ -282,7 +281,7 @@ const FuelExpensesPage = () => {
                 <X size={20} />
               </button>
             </div>
-            
+
             {modalType === 'fuel' ? (
               <form onSubmit={handleFuelSubmit} className="p-6 space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -327,7 +326,7 @@ const FuelExpensesPage = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Cost ($)</label>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Cost (₹)</label>
                     <input
                       data-testid="fuel-cost-input"
                       type="number"
@@ -419,7 +418,7 @@ const FuelExpensesPage = () => {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Amount ($)</label>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Amount (₹)</label>
                     <input
                       data-testid="expense-amount-input"
                       type="number"

@@ -3,6 +3,7 @@ import axios from 'axios';
 import Layout from '@/components/Layout';
 import { Plus, X, Wrench } from 'lucide-react';
 import { toast } from 'sonner';
+import { formatCurrency } from '@/lib/currencyUtils';
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
@@ -129,7 +130,7 @@ const MaintenancePage = () => {
                       <td className="px-4 py-3 text-sm text-slate-900 font-medium">{getVehicleName(log.vehicle_id)}</td>
                       <td className="px-4 py-3 text-sm text-slate-600">{new Date(log.service_date).toLocaleDateString()}</td>
                       <td className="px-4 py-3 text-sm text-slate-700">{log.service_type}</td>
-                      <td className="px-4 py-3 text-sm text-slate-900 font-semibold">${log.cost.toFixed(2)}</td>
+                      <td className="px-4 py-3 text-sm text-slate-900 font-semibold">{formatCurrency(log.cost)}</td>
                       <td className="px-4 py-3 text-sm text-slate-600">{log.notes || '-'}</td>
                     </tr>
                   ))
@@ -199,7 +200,7 @@ const MaintenancePage = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Cost ($)</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Cost (₹)</label>
                   <input
                     data-testid="maintenance-cost-input"
                     type="number"

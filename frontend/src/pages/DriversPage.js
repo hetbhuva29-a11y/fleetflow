@@ -91,7 +91,7 @@ const DriversPage = () => {
     }
   };
 
-  const filteredDrivers = drivers.filter(d => 
+  const filteredDrivers = drivers.filter(d =>
     d.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     d.license_number.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -275,8 +275,12 @@ const DriversPage = () => {
                     data-testid="driver-phone-input"
                     type="tel"
                     required
+                    maxLength={10}
                     value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/\D/g, '').slice(0, 10);
+                      setFormData({ ...formData, phone: value });
+                    }}
                     className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
                   />
                 </div>
