@@ -30,7 +30,7 @@ const DashboardPage = () => {
       value: stats?.active_fleet || 0,
       subtitle: `${stats?.total_vehicles || 0} total vehicles`,
       icon: Truck,
-      color: 'bg-blue-500',
+      color: 'bg-blue-50 text-blue-600',
       testId: 'active-fleet-card'
     },
     {
@@ -38,7 +38,7 @@ const DashboardPage = () => {
       value: stats?.maintenance_alerts || 0,
       subtitle: 'Vehicles in shop',
       icon: AlertTriangle,
-      color: 'bg-red-500',
+      color: 'bg-red-50 text-red-600',
       testId: 'maintenance-alerts-card'
     },
     {
@@ -46,7 +46,7 @@ const DashboardPage = () => {
       value: `${stats?.utilization_rate || 0}%`,
       subtitle: 'Fleet efficiency',
       icon: Activity,
-      color: 'bg-green-500',
+      color: 'bg-emerald-50 text-emerald-600',
       testId: 'utilization-rate-card'
     },
     {
@@ -54,7 +54,7 @@ const DashboardPage = () => {
       value: stats?.pending_cargo || 0,
       subtitle: 'Awaiting dispatch',
       icon: Package,
-      color: 'bg-orange-500',
+      color: 'bg-indigo-50 text-indigo-600',
       testId: 'pending-cargo-card'
     },
     {
@@ -62,7 +62,7 @@ const DashboardPage = () => {
       value: stats?.active_trips || 0,
       subtitle: 'In progress',
       icon: TrendingUp,
-      color: 'bg-purple-500',
+      color: 'bg-primary/10 text-primary',
       testId: 'active-trips-card'
     },
     {
@@ -70,7 +70,7 @@ const DashboardPage = () => {
       value: stats?.active_drivers || 0,
       subtitle: 'On duty',
       icon: Users,
-      color: 'bg-teal-500',
+      color: 'bg-slate-50 text-slate-600',
       testId: 'active-drivers-card'
     },
   ];
@@ -80,8 +80,8 @@ const DashboardPage = () => {
       <Layout>
         <div className="flex items-center justify-center h-full">
           <div className="text-center">
-            <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-            <p className="text-slate-600">Loading dashboard...</p>
+            <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+            <p className="text-slate-600 font-medium">Loading command center...</p>
           </div>
         </div>
       </Layout>
@@ -93,10 +93,10 @@ const DashboardPage = () => {
       <div data-testid="dashboard-page" className="p-6 md:p-8 max-w-[1600px] mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 font-heading tracking-tight">
+          <h1 className="text-3xl md:text-4xl font-bold text-slate-900 font-heading tracking-tight">
             Command Center
           </h1>
-          <p className="text-sm text-slate-500 mt-2 uppercase tracking-wider">
+          <p className="text-sm text-slate-500 mt-1.5 uppercase tracking-widest font-semibold opacity-70">
             Real-time fleet overview
           </p>
         </div>
@@ -107,20 +107,20 @@ const DashboardPage = () => {
             <div
               key={index}
               data-testid={stat.testId}
-              className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
+              className="bg-card border border-slate-200/60 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
             >
               <div className="flex items-start justify-between">
                 <div className="flex-1">
-                  <p className="text-xs text-slate-500 uppercase tracking-wider font-semibold mb-2">
+                  <p className="text-[10px] text-slate-400 uppercase tracking-[0.2em] font-bold mb-2">
                     {stat.title}
                   </p>
                   <p className="text-3xl font-bold text-slate-900 font-heading mb-1">
                     {stat.value}
                   </p>
-                  <p className="text-sm text-slate-600">{stat.subtitle}</p>
+                  <p className="text-xs text-slate-500 font-medium">{stat.subtitle}</p>
                 </div>
-                <div className={`${stat.color} p-3 rounded-lg`}>
-                  <stat.icon className="w-6 h-6 text-white" />
+                <div className={`${stat.color.split(' ')[0]} p-3 rounded-xl`}>
+                  <stat.icon className={`w-6 h-6 ${stat.color.split(' ')[1]}`} strokeWidth={2.5} />
                 </div>
               </div>
             </div>
@@ -129,7 +129,7 @@ const DashboardPage = () => {
 
         {/* Additional Info Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+          <div className="bg-card border border-slate-200 rounded-lg p-6 shadow-sm">
             <h3 className="text-xl font-semibold text-slate-900 font-heading mb-4">Fleet Status</h3>
             <div className="space-y-3">
               <div className="flex justify-between items-center py-2 border-b border-slate-100">
@@ -147,7 +147,7 @@ const DashboardPage = () => {
             </div>
           </div>
 
-          <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+          <div className="bg-card border border-slate-200 rounded-lg p-6 shadow-sm">
             <h3 className="text-xl font-semibold text-slate-900 font-heading mb-4">Trip Overview</h3>
             <div className="space-y-3">
               <div className="flex justify-between items-center py-2 border-b border-slate-100">

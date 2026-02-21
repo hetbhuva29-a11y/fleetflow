@@ -118,7 +118,7 @@ const FuelExpensesPage = () => {
       <Layout>
         <div className="flex items-center justify-center h-full">
           <div className="text-center">
-            <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+            <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
             <p className="text-slate-600">Loading logs...</p>
           </div>
         </div>
@@ -147,7 +147,7 @@ const FuelExpensesPage = () => {
               data-testid="fuel-tab"
               onClick={() => setActiveTab('fuel')}
               className={`pb-3 px-4 text-sm font-medium transition-colors border-b-2 ${activeTab === 'fuel'
-                ? 'border-orange-500 text-orange-600'
+                ? 'border-primary text-primary'
                 : 'border-transparent text-slate-600 hover:text-slate-900'
                 }`}
             >
@@ -157,7 +157,7 @@ const FuelExpensesPage = () => {
               data-testid="expenses-tab"
               onClick={() => setActiveTab('expenses')}
               className={`pb-3 px-4 text-sm font-medium transition-colors border-b-2 ${activeTab === 'expenses'
-                ? 'border-orange-500 text-orange-600'
+                ? 'border-primary text-primary'
                 : 'border-transparent text-slate-600 hover:text-slate-900'
                 }`}
             >
@@ -173,13 +173,13 @@ const FuelExpensesPage = () => {
               <button
                 data-testid="add-fuel-btn"
                 onClick={() => openModal('fuel')}
-                className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-all active:scale-95 shadow-sm font-medium"
+                className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg transition-all active:scale-95 shadow-sm font-medium"
               >
                 <Plus size={20} />
                 <span>Add Fuel Log</span>
               </button>
             </div>
-            <div className="bg-white border border-slate-200 rounded-lg shadow-sm overflow-hidden">
+            <div className="bg-card border border-slate-200 rounded-lg shadow-sm overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead className="bg-slate-50 border-b border-slate-200">
@@ -225,13 +225,13 @@ const FuelExpensesPage = () => {
               <button
                 data-testid="add-expense-btn"
                 onClick={() => openModal('expense')}
-                className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-all active:scale-95 shadow-sm font-medium"
+                className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg transition-all active:scale-95 shadow-sm font-medium"
               >
                 <Plus size={20} />
                 <span>Add Expense</span>
               </button>
             </div>
-            <div className="bg-white border border-slate-200 rounded-lg shadow-sm overflow-hidden">
+            <div className="bg-card border border-slate-200 rounded-lg shadow-sm overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead className="bg-slate-50 border-b border-slate-200">
@@ -272,7 +272,7 @@ const FuelExpensesPage = () => {
       {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
+          <div className="bg-card rounded-lg shadow-xl max-w-2xl w-full">
             <div className="flex items-center justify-between p-6 border-b border-slate-200">
               <h2 className="text-2xl font-bold text-slate-900 font-heading">
                 {modalType === 'fuel' ? 'Add Fuel Log' : 'Add Expense'}
@@ -292,7 +292,7 @@ const FuelExpensesPage = () => {
                       required
                       value={fuelFormData.vehicle_id}
                       onChange={(e) => setFuelFormData({ ...fuelFormData, vehicle_id: e.target.value })}
-                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     >
                       <option value="">Select Vehicle</option>
                       {vehicles.map(v => (
@@ -310,7 +310,7 @@ const FuelExpensesPage = () => {
                       required
                       value={fuelFormData.date}
                       onChange={(e) => setFuelFormData({ ...fuelFormData, date: e.target.value })}
-                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     />
                   </div>
                   <div>
@@ -322,7 +322,7 @@ const FuelExpensesPage = () => {
                       step="0.01"
                       value={fuelFormData.liters}
                       onChange={(e) => setFuelFormData({ ...fuelFormData, liters: e.target.value })}
-                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     />
                   </div>
                   <div>
@@ -334,7 +334,7 @@ const FuelExpensesPage = () => {
                       step="0.01"
                       value={fuelFormData.cost}
                       onChange={(e) => setFuelFormData({ ...fuelFormData, cost: e.target.value })}
-                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     />
                   </div>
                   <div>
@@ -346,7 +346,7 @@ const FuelExpensesPage = () => {
                       step="0.01"
                       value={fuelFormData.odometer_reading}
                       onChange={(e) => setFuelFormData({ ...fuelFormData, odometer_reading: e.target.value })}
-                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     />
                   </div>
                 </div>
@@ -361,7 +361,7 @@ const FuelExpensesPage = () => {
                   <button
                     data-testid="submit-fuel-btn"
                     type="submit"
-                    className="flex-1 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-all active:scale-95 shadow-sm font-medium"
+                    className="flex-1 px-4 py-2 bg-primary hover:bg-primary/90 text-white rounded-lg transition-all active:scale-95 shadow-sm font-medium"
                   >
                     Add Fuel Log
                   </button>
@@ -377,7 +377,7 @@ const FuelExpensesPage = () => {
                       required
                       value={expenseFormData.vehicle_id}
                       onChange={(e) => setExpenseFormData({ ...expenseFormData, vehicle_id: e.target.value })}
-                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     >
                       <option value="">Select Vehicle</option>
                       {vehicles.map(v => (
@@ -395,7 +395,7 @@ const FuelExpensesPage = () => {
                       required
                       value={expenseFormData.date}
                       onChange={(e) => setExpenseFormData({ ...expenseFormData, date: e.target.value })}
-                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     />
                   </div>
                   <div>
@@ -405,7 +405,7 @@ const FuelExpensesPage = () => {
                       required
                       value={expenseFormData.expense_type}
                       onChange={(e) => setExpenseFormData({ ...expenseFormData, expense_type: e.target.value })}
-                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     >
                       <option value="">Select Type</option>
                       <option value="Insurance">Insurance</option>
@@ -426,7 +426,7 @@ const FuelExpensesPage = () => {
                       step="0.01"
                       value={expenseFormData.amount}
                       onChange={(e) => setExpenseFormData({ ...expenseFormData, amount: e.target.value })}
-                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     />
                   </div>
                   <div className="md:col-span-2">
@@ -436,7 +436,7 @@ const FuelExpensesPage = () => {
                       value={expenseFormData.notes}
                       onChange={(e) => setExpenseFormData({ ...expenseFormData, notes: e.target.value })}
                       rows="3"
-                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     />
                   </div>
                 </div>
@@ -451,7 +451,7 @@ const FuelExpensesPage = () => {
                   <button
                     data-testid="submit-expense-btn"
                     type="submit"
-                    className="flex-1 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-all active:scale-95 shadow-sm font-medium"
+                    className="flex-1 px-4 py-2 bg-primary hover:bg-primary/90 text-white rounded-lg transition-all active:scale-95 shadow-sm font-medium"
                   >
                     Add Expense
                   </button>

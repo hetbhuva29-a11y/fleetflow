@@ -110,7 +110,7 @@ const DriversPage = () => {
       <Layout>
         <div className="flex items-center justify-center h-full">
           <div className="text-center">
-            <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+            <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
             <p className="text-slate-600">Loading drivers...</p>
           </div>
         </div>
@@ -133,7 +133,7 @@ const DriversPage = () => {
           <button
             data-testid="add-driver-btn"
             onClick={() => setShowModal(true)}
-            className="mt-4 md:mt-0 flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-all active:scale-95 shadow-sm font-medium"
+            className="mt-4 md:mt-0 flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg transition-all active:scale-95 shadow-sm font-medium"
           >
             <Plus size={20} />
             <span>Add Driver</span>
@@ -149,12 +149,12 @@ const DriversPage = () => {
               placeholder="Search by name or license..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+              className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
             />
           </div>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-lg shadow-sm overflow-hidden">
+        <div className="bg-card border border-slate-200 rounded-lg shadow-sm overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead className="bg-slate-50 border-b border-slate-200">
@@ -225,7 +225,7 @@ const DriversPage = () => {
 
       {showModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
+          <div className="bg-card rounded-lg shadow-xl max-w-2xl w-full">
             <div className="flex items-center justify-between p-6 border-b border-slate-200">
               <h2 className="text-2xl font-bold text-slate-900 font-heading">
                 {editingDriver ? 'Edit Driver' : 'Add New Driver'}
@@ -244,7 +244,7 @@ const DriversPage = () => {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                   />
                 </div>
                 <div>
@@ -255,7 +255,7 @@ const DriversPage = () => {
                     required
                     value={formData.license_number}
                     onChange={(e) => setFormData({ ...formData, license_number: e.target.value })}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm font-mono"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm font-mono"
                   />
                 </div>
                 <div>
@@ -266,7 +266,7 @@ const DriversPage = () => {
                     required
                     value={formData.license_expiry}
                     onChange={(e) => setFormData({ ...formData, license_expiry: e.target.value })}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                   />
                 </div>
                 <div>
@@ -281,7 +281,7 @@ const DriversPage = () => {
                       const value = e.target.value.replace(/\D/g, '').slice(0, 10);
                       setFormData({ ...formData, phone: value });
                     }}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                   />
                 </div>
               </div>
@@ -296,7 +296,7 @@ const DriversPage = () => {
                 <button
                   data-testid="submit-driver-btn"
                   type="submit"
-                  className="flex-1 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-all active:scale-95 shadow-sm font-medium"
+                  className="flex-1 px-4 py-2 bg-primary hover:bg-primary/90 text-white rounded-lg transition-all active:scale-95 shadow-sm font-medium"
                 >
                   {editingDriver ? 'Update Driver' : 'Create Driver'}
                 </button>

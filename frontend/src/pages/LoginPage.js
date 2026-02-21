@@ -43,14 +43,14 @@ const LoginPage = () => {
   return (
     <div className="min-h-screen flex">
       {/* Left Side - Hero Image */}
-      <div 
+      <div
         className="hidden lg:block lg:w-1/2 bg-cover bg-center relative"
         style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1755728531140-88e0b2a72d75?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHwxfHx3aGl0ZSUyMHNlbWklMjB0cnVjayUyMGZsZWV0JTIwaW5kdXN0cmlhbCUyMGxvZ2lzdGljc3xlbnwwfHx8fDE3NzE2NDc1MzJ8MA&ixlib=rb-4.1.0&q=85)' }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 to-slate-900/70" />
         <div className="relative h-full flex flex-col justify-end p-12">
           <div className="flex items-center gap-3 mb-6">
-            <Truck className="w-12 h-12 text-orange-500" />
+            <Truck className="w-12 h-12 text-primary" />
             <div>
               <h1 className="text-4xl font-bold text-white font-heading tracking-tight">FleetFlow</h1>
               <p className="text-slate-300 text-sm uppercase tracking-wider">Fleet Management System</p>
@@ -63,9 +63,9 @@ const LoginPage = () => {
       </div>
 
       {/* Right Side - Form */}
-      <div className="flex-1 flex items-center justify-center p-8 bg-slate-50">
+      <div className="flex-1 flex items-center justify-center p-8 bg-background">
         <div className="w-full max-w-md">
-          <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-8">
+          <div className="bg-card rounded-lg shadow-sm border border-slate-200 p-8">
             <div className="mb-8">
               <h2 className="text-3xl font-bold text-slate-900 font-heading tracking-tight">
                 {isLogin ? 'Welcome Back' : 'Create Account'}
@@ -94,7 +94,7 @@ const LoginPage = () => {
                     required={!isLogin}
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm"
+                    className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
                     placeholder="John Doe"
                   />
                 </div>
@@ -110,7 +110,7 @@ const LoginPage = () => {
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm"
+                  className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
                   placeholder="you@company.com"
                 />
               </div>
@@ -125,7 +125,7 @@ const LoginPage = () => {
                   required
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm"
+                  className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
                   placeholder="••••••••"
                 />
               </div>
@@ -139,7 +139,7 @@ const LoginPage = () => {
                     data-testid="role-select"
                     value={formData.role}
                     onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                    className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm"
+                    className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
                   >
                     <option value="Manager">Manager</option>
                     <option value="Dispatcher">Dispatcher</option>
@@ -153,7 +153,7 @@ const LoginPage = () => {
                 data-testid="submit-btn"
                 type="submit"
                 disabled={loading}
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-4 rounded-lg transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
+                className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-lg transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-md shadow-primary/20"
               >
                 {loading ? 'Please wait...' : (isLogin ? 'Sign In' : 'Create Account')}
               </button>
@@ -163,7 +163,7 @@ const LoginPage = () => {
               <button
                 data-testid="toggle-form-btn"
                 onClick={() => setIsLogin(!isLogin)}
-                className="text-sm text-slate-600 hover:text-orange-600 transition-colors"
+                className="text-sm text-slate-600 hover:text-primary transition-colors"
               >
                 {isLogin ? "Don't have an account? Sign up" : 'Already have an account? Sign in'}
               </button>

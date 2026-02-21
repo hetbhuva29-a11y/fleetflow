@@ -112,7 +112,7 @@ const VehiclesPage = () => {
     }
   };
 
-  const filteredVehicles = vehicles.filter(v => 
+  const filteredVehicles = vehicles.filter(v =>
     v.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     v.license_plate.toLowerCase().includes(searchTerm.toLowerCase()) ||
     v.model.toLowerCase().includes(searchTerm.toLowerCase())
@@ -133,7 +133,7 @@ const VehiclesPage = () => {
       <Layout>
         <div className="flex items-center justify-center h-full">
           <div className="text-center">
-            <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+            <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
             <p className="text-slate-600">Loading vehicles...</p>
           </div>
         </div>
@@ -157,7 +157,7 @@ const VehiclesPage = () => {
           <button
             data-testid="add-vehicle-btn"
             onClick={() => setShowModal(true)}
-            className="mt-4 md:mt-0 flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-all active:scale-95 shadow-sm font-medium"
+            className="mt-4 md:mt-0 flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg transition-all active:scale-95 shadow-sm font-medium"
           >
             <Plus size={20} />
             <span>Add Vehicle</span>
@@ -174,13 +174,13 @@ const VehiclesPage = () => {
               placeholder="Search by name, plate, or model..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm"
+              className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
             />
           </div>
         </div>
 
         {/* Table */}
-        <div className="bg-white border border-slate-200 rounded-lg shadow-sm overflow-hidden">
+        <div className="bg-card border border-slate-200 rounded-lg shadow-sm overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead className="bg-slate-50 border-b border-slate-200">
@@ -254,7 +254,7 @@ const VehiclesPage = () => {
       {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-card rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between p-6 border-b border-slate-200">
               <h2 className="text-2xl font-bold text-slate-900 font-heading">
                 {editingVehicle ? 'Edit Vehicle' : 'Add New Vehicle'}
@@ -276,7 +276,7 @@ const VehiclesPage = () => {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     placeholder="Fleet Truck 01"
                   />
                 </div>
@@ -288,7 +288,7 @@ const VehiclesPage = () => {
                     required
                     value={formData.model}
                     onChange={(e) => setFormData({ ...formData, model: e.target.value })}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     placeholder="Scania R450"
                   />
                 </div>
@@ -300,7 +300,7 @@ const VehiclesPage = () => {
                     required
                     value={formData.license_plate}
                     onChange={(e) => setFormData({ ...formData, license_plate: e.target.value })}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm font-mono"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm font-mono"
                     placeholder="ABC-1234"
                   />
                 </div>
@@ -310,7 +310,7 @@ const VehiclesPage = () => {
                     data-testid="vehicle-type-select"
                     value={formData.vehicle_type}
                     onChange={(e) => setFormData({ ...formData, vehicle_type: e.target.value })}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                   >
                     <option value="Truck">Truck</option>
                     <option value="Van">Van</option>
@@ -326,7 +326,7 @@ const VehiclesPage = () => {
                     step="0.01"
                     value={formData.max_capacity}
                     onChange={(e) => setFormData({ ...formData, max_capacity: e.target.value })}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     placeholder="10000"
                   />
                 </div>
@@ -339,7 +339,7 @@ const VehiclesPage = () => {
                     step="0.01"
                     value={formData.odometer}
                     onChange={(e) => setFormData({ ...formData, odometer: e.target.value })}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     placeholder="0"
                   />
                 </div>
@@ -355,7 +355,7 @@ const VehiclesPage = () => {
                 <button
                   data-testid="submit-vehicle-btn"
                   type="submit"
-                  className="flex-1 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-all active:scale-95 shadow-sm font-medium"
+                  className="flex-1 px-4 py-2 bg-primary hover:bg-primary/90 text-white rounded-lg transition-all active:scale-95 shadow-sm font-medium"
                 >
                   {editingVehicle ? 'Update Vehicle' : 'Create Vehicle'}
                 </button>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Layout from '@/components/Layout';
-import { Download, TrendingUp, IndianRupee } from 'lucide-react';
+import { Download, TrendingUp, BarChart3, Fuel, Wrench } from 'lucide-react';
 import { formatCurrency } from '@/lib/currencyUtils';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { toast } from 'sonner';
@@ -65,7 +65,7 @@ const AnalyticsPage = () => {
       <Layout>
         <div className="flex items-center justify-center h-full">
           <div className="text-center">
-            <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+            <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
             <p className="text-slate-600">Loading analytics...</p>
           </div>
         </div>
@@ -87,31 +87,31 @@ const AnalyticsPage = () => {
 
         {/* Summary Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+          <div className="bg-card border border-slate-200 rounded-lg p-6 shadow-sm">
             <div className="flex items-center justify-between mb-2">
               <p className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Total Costs</p>
-              <IndianRupee className="w-5 h-5 text-orange-500" />
+              <BarChart3 className="w-5 h-5 text-primary" />
             </div>
             <p className="text-3xl font-bold text-slate-900 font-heading">{formatCurrency(totalCosts)}</p>
             <p className="text-sm text-slate-600 mt-1">All expenses</p>
           </div>
-          <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+          <div className="bg-card border border-slate-200 rounded-lg p-6 shadow-sm">
             <div className="flex items-center justify-between mb-2">
               <p className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Fuel Costs</p>
-              <IndianRupee className="w-5 h-5 text-blue-500" />
+              <Fuel className="w-5 h-5 text-blue-500" />
             </div>
             <p className="text-3xl font-bold text-slate-900 font-heading">{formatCurrency(totalFuel)}</p>
             <p className="text-sm text-slate-600 mt-1">Total fuel spend</p>
           </div>
-          <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+          <div className="bg-card border border-slate-200 rounded-lg p-6 shadow-sm">
             <div className="flex items-center justify-between mb-2">
               <p className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Maintenance</p>
-              <IndianRupee className="w-5 h-5 text-red-500" />
+              <Wrench className="w-5 h-5 text-indigo-500" />
             </div>
             <p className="text-3xl font-bold text-slate-900 font-heading">{formatCurrency(totalMaintenance)}</p>
             <p className="text-sm text-slate-600 mt-1">Service costs</p>
           </div>
-          <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+          <div className="bg-card border border-slate-200 rounded-lg p-6 shadow-sm">
             <div className="flex items-center justify-between mb-2">
               <p className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Avg Efficiency</p>
               <TrendingUp className="w-5 h-5 text-green-500" />
@@ -124,7 +124,7 @@ const AnalyticsPage = () => {
         {/* Charts */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* Fuel Trends Chart */}
-          <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+          <div className="bg-card border border-slate-200 rounded-lg p-6 shadow-sm">
             <h3 className="text-xl font-semibold text-slate-900 font-heading mb-4">Fuel Cost Trends</h3>
             {fuelTrends.length > 0 ? (
               <ResponsiveContainer width="100%" height={300}>
@@ -137,7 +137,7 @@ const AnalyticsPage = () => {
                     formatter={(value) => formatCurrency(value)}
                   />
                   <Legend />
-                  <Line type="monotone" dataKey="total_cost" stroke="#f97316" strokeWidth={2} name="Total Cost" />
+                  <Line type="monotone" dataKey="total_cost" stroke="#3b82f6" strokeWidth={2} name="Total Cost" />
                   <Line type="monotone" dataKey="total_liters" stroke="#3b82f6" strokeWidth={2} name="Total Liters" />
                 </LineChart>
               </ResponsiveContainer>
@@ -149,7 +149,7 @@ const AnalyticsPage = () => {
           </div>
 
           {/* Vehicle Costs Chart */}
-          <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+          <div className="bg-card border border-slate-200 rounded-lg p-6 shadow-sm">
             <h3 className="text-xl font-semibold text-slate-900 font-heading mb-4">Vehicle Operational Costs</h3>
             {vehicleCosts.length > 0 ? (
               <ResponsiveContainer width="100%" height={300}>
@@ -159,9 +159,9 @@ const AnalyticsPage = () => {
                   <YAxis tick={{ fontSize: 12 }} stroke="#64748b" />
                   <Tooltip contentStyle={{ borderRadius: '8px', border: '1px solid #e2e8f0' }} />
                   <Legend />
-                  <Bar dataKey="maintenance_cost" fill="#ef4444" name="Maintenance" />
+                  <Bar dataKey="maintenance_cost" fill="#4f46e5" name="Maintenance" />
                   <Bar dataKey="fuel_cost" fill="#3b82f6" name="Fuel" />
-                  <Bar dataKey="other_expenses" fill="#f59e0b" name="Other" />
+                  <Bar dataKey="other_expenses" fill="#94a3b8" name="Other" />
                 </BarChart>
               </ResponsiveContainer>
             ) : (
@@ -173,7 +173,7 @@ const AnalyticsPage = () => {
         </div>
 
         {/* Vehicle Costs Table */}
-        <div className="bg-white border border-slate-200 rounded-lg shadow-sm overflow-hidden mb-8">
+        <div className="bg-card border border-slate-200 rounded-lg shadow-sm overflow-hidden mb-8">
           <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
             <h3 className="text-xl font-semibold text-slate-900 font-heading">Vehicle Cost Breakdown</h3>
           </div>
@@ -218,7 +218,7 @@ const AnalyticsPage = () => {
         </div>
 
         {/* Export Section */}
-        <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+        <div className="bg-card border border-slate-200 rounded-lg p-6 shadow-sm">
           <h3 className="text-xl font-semibold text-slate-900 font-heading mb-4">Export Reports</h3>
           <p className="text-sm text-slate-600 mb-6">Download CSV reports for external analysis</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -249,7 +249,7 @@ const AnalyticsPage = () => {
             <button
               data-testid="export-costs-btn"
               onClick={() => exportReport('costs')}
-              className="flex items-center justify-center gap-2 px-4 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-all active:scale-95 shadow-sm font-medium"
+              className="flex items-center justify-center gap-2 px-4 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg transition-all active:scale-95 shadow-sm font-medium"
             >
               <Download size={18} />
               <span>Costs</span>

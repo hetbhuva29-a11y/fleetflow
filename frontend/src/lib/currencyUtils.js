@@ -8,7 +8,9 @@ export const CURRENCY_SYMBOL = '₹';
  */
 export const formatCurrency = (value) => {
   if (value === undefined || value === null) return `${CURRENCY_SYMBOL}0.00`;
-  return `${CURRENCY_SYMBOL}${value.toLocaleString('en-IN', {
+  const num = typeof value === 'number' ? value : parseFloat(value);
+  if (isNaN(num)) return `${CURRENCY_SYMBOL}0.00`;
+  return `${CURRENCY_SYMBOL}${num.toLocaleString('en-IN', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2
   })}`;
@@ -21,7 +23,9 @@ export const formatCurrency = (value) => {
  */
 export const formatValue = (value) => {
   if (value === undefined || value === null) return `${CURRENCY_SYMBOL}0.00`;
-  return `${CURRENCY_SYMBOL}${value.toLocaleString('en-IN', {
+  const num = typeof value === 'number' ? value : parseFloat(value);
+  if (isNaN(num)) return `${CURRENCY_SYMBOL}0.00`;
+  return `${CURRENCY_SYMBOL}${num.toLocaleString('en-IN', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2
   })}`;

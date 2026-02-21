@@ -110,7 +110,7 @@ const TripsPage = () => {
   const availableVehicles = vehicles.filter(v => v.status === 'Ready' && !v.out_of_service);
   const availableDrivers = drivers.filter(d => d.status !== 'Suspended');
 
-  const filteredTrips = trips.filter(t => 
+  const filteredTrips = trips.filter(t =>
     t.origin.toLowerCase().includes(searchTerm.toLowerCase()) ||
     t.destination.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -134,7 +134,7 @@ const TripsPage = () => {
       <Layout>
         <div className="flex items-center justify-center h-full">
           <div className="text-center">
-            <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+            <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
             <p className="text-slate-600">Loading trips...</p>
           </div>
         </div>
@@ -157,7 +157,7 @@ const TripsPage = () => {
           <button
             data-testid="add-trip-btn"
             onClick={() => setShowModal(true)}
-            className="mt-4 md:mt-0 flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-all active:scale-95 shadow-sm font-medium"
+            className="mt-4 md:mt-0 flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg transition-all active:scale-95 shadow-sm font-medium"
           >
             <Plus size={20} />
             <span>Create Trip</span>
@@ -173,12 +173,12 @@ const TripsPage = () => {
               placeholder="Search by origin or destination..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+              className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
             />
           </div>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-lg shadow-sm overflow-hidden">
+        <div className="bg-card border border-slate-200 rounded-lg shadow-sm overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead className="bg-slate-50 border-b border-slate-200">
@@ -254,7 +254,7 @@ const TripsPage = () => {
 
       {showModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-card rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between p-6 border-b border-slate-200">
               <h2 className="text-2xl font-bold text-slate-900 font-heading">Create New Trip</h2>
               <button onClick={closeModal} className="p-2 hover:bg-slate-100 rounded transition-colors">
@@ -271,7 +271,7 @@ const TripsPage = () => {
                     required
                     value={formData.origin}
                     onChange={(e) => setFormData({ ...formData, origin: e.target.value })}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     placeholder="New York"
                   />
                 </div>
@@ -283,7 +283,7 @@ const TripsPage = () => {
                     required
                     value={formData.destination}
                     onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     placeholder="Boston"
                   />
                 </div>
@@ -296,7 +296,7 @@ const TripsPage = () => {
                     step="0.01"
                     value={formData.cargo_weight}
                     onChange={(e) => setFormData({ ...formData, cargo_weight: e.target.value })}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     placeholder="5000"
                   />
                 </div>
@@ -308,7 +308,7 @@ const TripsPage = () => {
                     step="0.01"
                     value={formData.distance}
                     onChange={(e) => setFormData({ ...formData, distance: e.target.value })}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     placeholder="350"
                   />
                 </div>
@@ -319,7 +319,7 @@ const TripsPage = () => {
                     type="text"
                     value={formData.cargo_description}
                     onChange={(e) => setFormData({ ...formData, cargo_description: e.target.value })}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     placeholder="Electronics, fragile items"
                   />
                 </div>
@@ -330,7 +330,7 @@ const TripsPage = () => {
                     required
                     value={formData.vehicle_id}
                     onChange={(e) => setFormData({ ...formData, vehicle_id: e.target.value })}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                   >
                     <option value="">Select Vehicle</option>
                     {availableVehicles.map(v => (
@@ -347,7 +347,7 @@ const TripsPage = () => {
                     required
                     value={formData.driver_id}
                     onChange={(e) => setFormData({ ...formData, driver_id: e.target.value })}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                   >
                     <option value="">Select Driver</option>
                     {availableDrivers.map(d => (
@@ -369,7 +369,7 @@ const TripsPage = () => {
                 <button
                   data-testid="submit-trip-btn"
                   type="submit"
-                  className="flex-1 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-all active:scale-95 shadow-sm font-medium"
+                  className="flex-1 px-4 py-2 bg-primary hover:bg-primary/90 text-white rounded-lg transition-all active:scale-95 shadow-sm font-medium"
                 >
                   Create Trip
                 </button>

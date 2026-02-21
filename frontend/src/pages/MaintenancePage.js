@@ -75,7 +75,7 @@ const MaintenancePage = () => {
       <Layout>
         <div className="flex items-center justify-center h-full">
           <div className="text-center">
-            <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+            <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
             <p className="text-slate-600">Loading maintenance logs...</p>
           </div>
         </div>
@@ -98,14 +98,14 @@ const MaintenancePage = () => {
           <button
             data-testid="add-maintenance-btn"
             onClick={() => setShowModal(true)}
-            className="mt-4 md:mt-0 flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-all active:scale-95 shadow-sm font-medium"
+            className="mt-4 md:mt-0 flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg transition-all active:scale-95 shadow-sm font-medium"
           >
             <Plus size={20} />
             <span>Add Service Log</span>
           </button>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-lg shadow-sm overflow-hidden">
+        <div className="bg-card border border-slate-200 rounded-lg shadow-sm overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead className="bg-slate-50 border-b border-slate-200">
@@ -143,7 +143,7 @@ const MaintenancePage = () => {
 
       {showModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
+          <div className="bg-card rounded-lg shadow-xl max-w-2xl w-full">
             <div className="flex items-center justify-between p-6 border-b border-slate-200">
               <h2 className="text-2xl font-bold text-slate-900 font-heading">Add Maintenance Log</h2>
               <button onClick={closeModal} className="p-2 hover:bg-slate-100 rounded transition-colors">
@@ -159,7 +159,7 @@ const MaintenancePage = () => {
                     required
                     value={formData.vehicle_id}
                     onChange={(e) => setFormData({ ...formData, vehicle_id: e.target.value })}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                   >
                     <option value="">Select Vehicle</option>
                     {vehicles.map(v => (
@@ -177,7 +177,7 @@ const MaintenancePage = () => {
                     required
                     value={formData.service_date}
                     onChange={(e) => setFormData({ ...formData, service_date: e.target.value })}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                   />
                 </div>
                 <div>
@@ -187,7 +187,7 @@ const MaintenancePage = () => {
                     required
                     value={formData.service_type}
                     onChange={(e) => setFormData({ ...formData, service_type: e.target.value })}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                   >
                     <option value="">Select Type</option>
                     <option value="Oil Change">Oil Change</option>
@@ -208,7 +208,7 @@ const MaintenancePage = () => {
                     step="0.01"
                     value={formData.cost}
                     onChange={(e) => setFormData({ ...formData, cost: e.target.value })}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     placeholder="150.00"
                   />
                 </div>
@@ -219,7 +219,7 @@ const MaintenancePage = () => {
                     value={formData.notes}
                     onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                     rows="3"
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     placeholder="Additional notes..."
                   />
                 </div>
@@ -235,7 +235,7 @@ const MaintenancePage = () => {
                 <button
                   data-testid="submit-maintenance-btn"
                   type="submit"
-                  className="flex-1 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-all active:scale-95 shadow-sm font-medium"
+                  className="flex-1 px-4 py-2 bg-primary hover:bg-primary/90 text-white rounded-lg transition-all active:scale-95 shadow-sm font-medium"
                 >
                   Add Service Log
                 </button>
